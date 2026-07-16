@@ -16,4 +16,6 @@
           ansible.builtin.include_role:
             name: ans_zeronetworks_misc_role
             tasks_from: "breakglass/run_script.yml"
-            
+          vars:
+            targetNode: "{{ bg_targetNode}}"
+            segmentServer: "{{ bg_segmentServer}}"
