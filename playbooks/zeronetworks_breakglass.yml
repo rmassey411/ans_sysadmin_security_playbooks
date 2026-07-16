@@ -1,0 +1,18 @@
+---
+- name: Run breakglass process
+  hosts: all
+  gather_facts: true
+
+  vars:
+    targetNode: "myserver01"                  # Unreachable host 
+    segmentServer: "segsrv01"                 # Segment Server to run Breakglass.ps1
+    deploymentCluster: "deploymentCluster01"  # Limits the asset scope to a single Zero Networks deployment cluster. 
+    mode: "All"                               # Controls which firewall ports are opened on each target.
+
+  tasks:
+    - name: Task to facilitate BreakGlass on unreachable host
+      block:
+        - name: Include task from role
+          ansible.builtin.include_role:
+            name: ans_zeronetworks_misc_role
+            tasks_from: "breakglass/run_script.yml"
